@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+service:
+  products: 8081
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: products-get
+          uri: http://localhost:8081
+          predicates:
+            - Path=/products/**
+          filters:
+            - PrefixPath=/api/v1
+#
+#        - id: products-post
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/products/**
+#            - Method=POST
+#          filters:
+#            - PrefixPath=/api/v1
+
+management:
+  endpoints:
+    web:
+      base-path: "/api/v1/gateway"
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

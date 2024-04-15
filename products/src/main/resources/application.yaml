@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: products
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_1
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true # Set to true to see SQL queries in console
+    hibernate:
+      ddl-auto: create
+
+management:
+  endpoints:
+    web:
+      base-path: "/api/v1/products"
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
