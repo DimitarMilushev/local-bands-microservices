@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.*;
+import java.io.Serializable;
 
 @MappedSuperclass
 @Getter @Setter @NoArgsConstructor
-public abstract class VersionedEntity {
+public abstract class VersionedEntity implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
 
