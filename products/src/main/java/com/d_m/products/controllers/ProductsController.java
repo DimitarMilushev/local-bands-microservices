@@ -2,6 +2,7 @@ package com.d_m.products.controllers;
 
 import java.net.URI;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -10,16 +11,10 @@ import com.d_m.products.dtos.AddProductDto;
 import com.d_m.products.models.ProductEntity;
 import com.d_m.products.services.ProductsService;
 
-import jakarta.persistence.EntityNotFoundException;
-
 @RestController
+@RequiredArgsConstructor
 public class ProductsController {
     private final ProductsService service;
-
-    public ProductsController(ProductsService service) {
-        this.service = service;
-    }
-
     @PostMapping("/create")
     public ResponseEntity<URI> create(@RequestBody AddProductDto payload) {
         final ProductEntity added = this.service.add(payload);

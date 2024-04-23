@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ProductsRepository extends CrudRepository<ProductEntity, Long> { }
+public interface ProductsRepository extends CrudRepository<ProductEntity, Long> {
+    boolean existsBySKU(String SKU);
+}

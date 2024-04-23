@@ -1,32 +1,17 @@
 package com.d_m.products.dtos;
 
-import lombok.Data;
-
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.NonNull;
 
-@Data
-public class AddProductDto implements Serializable {
-    @lombok.NonNull() 
-    private String name;
-
-    @lombok.NonNull() 
-    private String description;
-
-    @lombok.NonNull() 
-    private String[] images;
-    
-    @lombok.NonNull() 
-    @JsonProperty("SKU")
-    private String SKU;
-    
-    private double price;
-
-    private Long colorId;
-    
-    @lombok.NonNull() 
-    private Long categoryId;
-
-    private Long discountId; 
+@Builder
+public record AddProductDto(
+        @NonNull() String name,
+        @NonNull() String description,
+        @NonNull() String[] images,
+        @NonNull() @JsonProperty("SKU") String SKU,
+        double price,
+        Long colorId,
+        @NonNull() Long categoryId,
+        Long discountId) {
 }

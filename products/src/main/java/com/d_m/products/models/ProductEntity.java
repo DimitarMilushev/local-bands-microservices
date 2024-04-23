@@ -2,13 +2,16 @@ package com.d_m.products.models;
 
 import jakarta.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
 @Table(name = "products")
+@SuperBuilder
 public class ProductEntity extends VersionedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +47,11 @@ public class ProductEntity extends VersionedEntity {
      * adding the CategoriesRepository in the ProductsService
     */
     private Long categoryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private CategoryEntity category;
+
 
     @Column(name = "discount_id")
     /*

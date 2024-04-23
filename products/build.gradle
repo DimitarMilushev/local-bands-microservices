@@ -28,6 +28,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.4'
 	implementation 'org.springframework.data:spring-data-commons:3.2.2'
 
+	// Mappers
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	compileOnly 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
 	// ORM
 	implementation 'org.hibernate:hibernate-core:6.4.4.Final'
 	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
@@ -37,17 +45,17 @@ dependencies {
 
 	// Annotations
 	implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
-	annotationProcessor 'org.projectlombok:lombok'
 
 	// Validation
 	compileOnly 'org.hibernate.orm:hibernate-jpamodelgen:6.4.4.Final'
-	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 	implementation 'jakarta.el:jakarta.el-api:5.0.1'
 
 	// Testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'com.h2database:h2:2.2.224'
+	testImplementation 'org.mockito:mockito-core:5.11.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+
 }
 
 tasks.named('test') {

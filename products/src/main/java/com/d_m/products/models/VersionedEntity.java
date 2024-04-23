@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @SuperBuilder
 public abstract class VersionedEntity implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
