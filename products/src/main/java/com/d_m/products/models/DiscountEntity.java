@@ -5,22 +5,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "discounts")
-@Getter @Setter @NoArgsConstructor
+@Data
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class DiscountEntity extends VersionedEntity {
-    @Id
-    @GeneratedValue
-    private long id;
-
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)

@@ -1,6 +1,7 @@
 package com.d_m.products.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,14 @@ import java.time.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-@Getter @Setter @NoArgsConstructor @SuperBuilder
+@Data
+@NoArgsConstructor
+@SuperBuilder
 public abstract class VersionedEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
 

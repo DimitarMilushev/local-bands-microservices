@@ -1,10 +1,10 @@
 package com.d_m.products.repositories;
 
-import com.d_m.products.models.CategoryEntity;
+import com.d_m.products.models.ApparelEntityBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoriesRepository extends JpaRepository<CategoryEntity, Long> {
+public interface ApparelsRepository extends JpaRepository<ApparelEntityBase, Long> {
 }

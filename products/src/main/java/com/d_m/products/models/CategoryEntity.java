@@ -15,12 +15,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "product_categories")
 @Data
+@NoArgsConstructor
 @SuperBuilder
 public class CategoryEntity extends VersionedEntity implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String code;
 }
