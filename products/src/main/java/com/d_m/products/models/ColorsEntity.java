@@ -18,4 +18,7 @@ public class ColorsEntity extends VersionedEntity{
 
     @Column(nullable = false)
     private String hex;
+
+    @Column(nullable = false)
+    private String code;
 }

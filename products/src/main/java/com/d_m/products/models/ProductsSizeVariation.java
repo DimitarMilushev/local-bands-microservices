@@ -7,15 +7,21 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "product-variations")
+@Table(name = "size-variations")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @SuperBuilder
-public class ProductVariationEntity extends VersionedEntity {
+public class ProductsSizeVariation extends VersionedEntity {
+    @Column(nullable = false, unique = true)
+    private String SKU;
+
     @ManyToOne
     @JoinColumn(name = "size", referencedColumnName = "id")
     private SizeEntity size;
+
+    @Column(length = 1024)
+    private String description;
 
     @Column(nullable = false)
     private double price;

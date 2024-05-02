@@ -1,7 +1,7 @@
 package com.d_m.products.services;
 
-import com.d_m.products.dtos.CreateProductVarRequest;
-import com.d_m.products.models.ProductVariationEntity;
+import com.d_m.products.dtos.CreateSizeVarRequest;
+import com.d_m.products.models.ProductsSizeVariation;
 import com.d_m.products.models.SizeEntity;
 import com.d_m.products.repositories.ProductVariationRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,23 +17,40 @@ public class ProductVariationsService {
     private final SizesService sizesService;
     private final DiscountsService discountsService;
 
-    public List<ProductVariationEntity> getAllProductVars() {
+    public List<ProductsSizeVariation> getAllProductVars() {
         return repository.findAll();
     }
-    public ProductVariationEntity createProductVariation(CreateProductVarRequest request) {
+
+    public ProductsSizeVariation createProductVariation(CreateSizeVarRequest request) {
         SizeEntity size = sizesService.getSizeById(request.sizeId());
-        ProductVariationEntity newProductVar = ProductVariationEntity.builder()
+
+        ProductsSizeVariation sizeVar = ProductsSizeVariation.builder()
                 .size(size)
+                .description(request.description())
                 .price(request.price()).build();
-        return repository.save(newProductVar);
+        String categoryCode = request.categoryCode();
+        String colorCode = request.colorCode();
+        String genderCode = request.genderCode();
+        Long productId = request.productId();
+        String sizeCode = size.getCode();
+
+        String sku = String.format("%s-%s-%s-%s-%s",
+                categoryCode,
+                genderCode,
+                colorCode,
+                productId,
+                sizeCode);
+
+        sizeVar.setSKU(sku);
+        return repository.save(sizeVar);
     }
 
-    public ProductVariationEntity getProductVarById(Long id) {
+    public ProductsSizeVariation getProductVarById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("ProductVar with id " + id + " not found" ));
     }
 
-    public ProductVariationEntity addDiscount(Long productVarId, Long discountId) {
-        ProductVariationEntity productVar = getProductVarById(productVarId);
+    public ProductsSizeVariation addDiscount(Long productVarId, Long discountId) {
+        ProductsSizeVariation productVar = getProductVarById(productVarId);
         productVar.setDiscount(discountsService.getDiscountById(discountId));
         return repository.save(productVar);
     }

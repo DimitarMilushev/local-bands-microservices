@@ -1,0 +1,25 @@
+-- Insert colors with explicit created_at
+INSERT INTO colors (name, hex, created_at, code) VALUES ('Red', '#FF0000', NOW(), 'RED');
+INSERT INTO colors (name, hex, created_at, code) VALUES ('Blue', '#0000FF', NOW(), 'BLU');
+INSERT INTO colors (name, hex, created_at, code) VALUES ('Green', '#00FF00', NOW(), 'GRE');
+
+-- Insert genders with explicit created_at
+INSERT INTO genders (name, code, created_at) VALUES ('Male', 'MAL', NOW());
+INSERT INTO genders (name, code, created_at) VALUES ('Female', 'FEM', NOW());
+INSERT INTO genders (name, code, created_at) VALUES ('Unisex', 'UNI', NOW());
+INSERT INTO genders (name, code, created_at) VALUES ('Childrens', 'CHI', NOW());
+
+-- Insert sizes with explicit created_at
+INSERT INTO sizes (code, name, created_at) VALUES ('XS', 'Extra Small', NOW());
+INSERT INTO sizes (code, name, created_at) VALUES ('S', 'Small', NOW());
+INSERT INTO sizes (code, name, created_at) VALUES ('M', 'Medium', NOW());
+INSERT INTO sizes (code, name, created_at) VALUES ('L', 'Large', NOW());
+INSERT INTO sizes (code, name, created_at) VALUES ('XL', 'Extra Large', NOW());
+INSERT INTO sizes (code, name, created_at) VALUES ('XXL', 'Extra Extra Large', NOW());
+
+
+-- Insert categories with explicit created_at
+INSERT INTO product_categories (name, code, created_at) VALUES ('Apparel', 'APR', NOW());
+INSERT INTO product_categories (name, code, created_at) VALUES ('Media', 'MED', NOW());
+INSERT INTO product_categories (name, code, created_at) VALUES ('Art', 'ART', NOW());
+INSERT INTO product_categories (name, code, created_at) VALUES ('Accessories', 'ACS', NOW());
