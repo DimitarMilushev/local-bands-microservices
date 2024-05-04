@@ -29,18 +29,29 @@ public class ProductsService {
         Product product = Product.builder()
                 .color(color)
                 .name(request.name())
+                .description(request.description())
                 .images(request.imageUrls())
                 .category(category)
                 .gender(gender).build();
         return repository.save(product);
     }
 
-    public Product getApparelById(Long id) {
+    public Product getProductById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Apparel with id " + id + " not found" ));
     }
 
+    public List<Product> getProductsByIds(Long[] ids, ProductFamily productFamily) {
+        List<Product> products = new ArrayList<>();
+        for (Long id : ids) {
+            Product product = getProductById(id);
+            product.setProductFamily(productFamily);
+            products.add(product);
+        }
+        return products;
+    }
+
     public Product addProductVariations(AddSizeVariationsRequest request, Long apparelId) {
-        Product apparel = getApparelById(apparelId);
+        Product apparel = getProductById(apparelId);
         List<ProductsSizeVariation> prodVars = new ArrayList<>();
         for (Long id : request.ids()) {
             ProductsSizeVariation prodVar = prodVarService.getProductVarById(id);

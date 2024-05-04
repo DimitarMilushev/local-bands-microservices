@@ -9,7 +9,6 @@ public record CreateSizeVarRequest(@NotEmpty String categoryCode,
                                    @NotEmpty String genderCode,
                                    @NotNull Long productId,
                                    @NotNull Long sizeId,
-                                   @NotBlank String description,
                                    @NotNull double price,
                                    @NotNull int quantityAvailable) {
 }

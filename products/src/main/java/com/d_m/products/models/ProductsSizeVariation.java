@@ -20,9 +20,6 @@ public class ProductsSizeVariation extends VersionedEntity {
     @JoinColumn(name = "size", referencedColumnName = "id")
     private SizeEntity size;
 
-    @Column(length = 1024)
-    private String description;
-
     @Column(nullable = false)
     private double price;
 

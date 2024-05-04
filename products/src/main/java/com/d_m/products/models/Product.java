@@ -18,6 +18,9 @@ public class Product extends VersionedEntity {
     @Column(nullable = false, length = 128)
     private String name;
 
+    @Column(length = 1024)
+    private String description;
+
     @Column(columnDefinition = "text[]")
     private String[] images;
 
@@ -40,4 +43,8 @@ public class Product extends VersionedEntity {
             inverseJoinColumns = @JoinColumn(name = "variation_id")
     )
     private List<ProductsSizeVariation> availableSizes;
+
+    @ManyToOne()
+    @JoinColumn(name = "product_family", referencedColumnName = "id")
+    private ProductFamily productFamily;
 }

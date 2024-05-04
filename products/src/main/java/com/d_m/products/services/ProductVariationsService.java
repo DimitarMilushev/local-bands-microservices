@@ -26,7 +26,7 @@ public class ProductVariationsService {
 
         ProductsSizeVariation sizeVar = ProductsSizeVariation.builder()
                 .size(size)
-                .description(request.description())
+                .quantityAvailable(request.quantityAvailable())
                 .price(request.price()).build();
         String categoryCode = request.categoryCode();
         String colorCode = request.colorCode();
