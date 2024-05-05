@@ -19,15 +19,28 @@ public interface ProductMapper {
     ProductResponse productToProductResponse(Product product);
 
     default SingleProductViewResponse productToSingleProductViewResponse(Product product) {
-        List<RelatedProductResponse> relatedProducts = new ArrayList<RelatedProductResponse>();
-        for (Product productFromFamily : product.getProductFamily().getProducts()) {
-            relatedProducts.add(productToRelatedProductResponse(productFromFamily));
+        if ( product == null ) {
+            return null;
         }
         ProductResponse productResponse = INSTANCE.productToProductResponse(product);
-        return new SingleProductViewResponse(productResponse, relatedProducts);
+
+        if ( product.getProductFamily() != null ) {
+            List<RelatedProductResponse> relatedProducts = new ArrayList<RelatedProductResponse>();
+            for (Product productFromFamily : product.getProductFamily().getProducts()) {
+                relatedProducts.add(productToRelatedProductResponse(productFromFamily));
+            }
+            return new SingleProductViewResponse(productResponse, relatedProducts);
+        } else {
+            return new SingleProductViewResponse(productResponse, new ArrayList<RelatedProductResponse>());
+        }
+
     }
 
     default RelatedProductResponse productToRelatedProductResponse(Product product) {
+        if ( product == null ) {
+            return null;
+        }
+
         return new RelatedProductResponse(
                 product.getId(), product.getColor().getHex());
     }
