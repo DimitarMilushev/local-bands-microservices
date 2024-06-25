@@ -1,0 +1,64 @@
+---
+title: Invoice Entities
+---
+classDiagram
+    class VersionedEntity {
+        -Long id
+        -ZonedDateTime createdAt
+        -ZonedDateTime modifiedAt
+        -ZonedDateTime deletedAt
+        #onCreate()
+        #onUpdate()
+        #onDelete()
+    }
+    class SizeEntity {
+        -Long id
+        -String name
+        -String code
+    }
+    class ProductVariationEntity {
+        -Long id
+        -SizeEntity size
+        -double price
+        -DiscountEntity discount;
+    }
+    class DiscountEntity {
+        -Long id
+        -String name
+        -String description
+        -double percentage
+        -boolean active
+    }
+    class ColorsEntity {
+        -Long id
+        -String name
+        -String hex
+    }
+    class CategoryEntity {
+        -Long id
+        -String name
+        -String code
+    }
+    class Product {
+        -Long id
+        -String SKU
+        -String name
+        -String description
+        -String[] images
+        -CategoryEntity category
+        -ColorsEntity color
+        -List~ProductVariationEntity~
+    }
+
+    Product o-- ColorsEntity
+    Product --> ProductVariationEntity
+    ProductVariationEntity --> DiscountEntity
+    ProductVariationEntity --> SizeEntity
+    Product --> CategoryEntity
+    VersionedEntity <|-- ColorsEntity
+    VersionedEntity <|-- DiscountEntity
+    VersionedEntity <|-- SizeEntity
+    VersionedEntity <|-- Product
+    VersionedEntity <|-- ProductVariationEntity
+    VersionedEntity <|-- CategoryEntity
+

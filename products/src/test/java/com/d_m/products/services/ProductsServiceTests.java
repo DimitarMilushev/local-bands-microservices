@@ -1,7 +1,7 @@
 //package com.d_m.products.services;
 //
 //import com.d_m.products.dtos.AddProductDto;
-//import com.d_m.products.mappers.ProductMapper;
+//import com.d_m.products.products.base.mapper.ProductMapper;
 //import com.d_m.products.models.BaseProductEntity;
 //import jakarta.persistence.EntityExistsException;
 //import jakarta.persistence.EntityNotFoundException;
@@ -15,7 +15,7 @@
 //import static org.mockito.ArgumentMatchers.any;
 //import static org.mockito.Mockito.*;
 //
-//import com.d_m.products.repositories.ProductsRepository;
+//import com.d_m.products.products.base.ProductsRepository;
 //
 //import java.util.ArrayList;
 //import java.util.Optional;
