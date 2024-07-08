@@ -14,6 +14,13 @@ spring:
     show-sql: true # Set to true to see SQL queries in console
     hibernate:
       ddl-auto: update
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/test_1
+    user: postgres
+    password: postgres
+    baseline-on-migrate: true
 
 management:
   endpoints:
