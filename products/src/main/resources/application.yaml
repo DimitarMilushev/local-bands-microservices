@@ -5,10 +5,12 @@ spring:
   application:
     name: products
   datasource:
-    url: jdbc:postgresql://localhost:5432/test_1
+    url: jdbc:postgresql://localhost:5432/products
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: products
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true # Set to true to see SQL queries in console
@@ -17,10 +19,11 @@ spring:
   flyway:
     locations: classpath:db/migration
     enabled: true
-    url: jdbc:postgresql://localhost:5432/test_1
+    url: jdbc:postgresql://localhost:5432/products
     user: postgres
     password: postgres
     baseline-on-migrate: true
+    schemas: products
 
 management:
   endpoints:
